@@ -32,6 +32,40 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==================== NAVBAR ==================== */
+
+.navbar {
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 12px 20px;
+}
+
+.navbar-inner {
+  max-width: 440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-logo {
+  height: 36px;
+  width: auto;
+  border-radius: 8px;
+}
+
+.navbar-brand {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.3px;
+}
+
+.navbar-brand strong {
+  font-weight: 800;
+  color: var(--accent-purple);
+}
+
 /* ==================== TIMER BAR ==================== */
 
 .timer-bar {
@@ -183,6 +217,20 @@ body.timer-active .hero {
 
 .section {
   margin-top: 56px;
+}
+
+.content-hidden {
+  display: none;
+}
+
+.content-visible {
+  display: block;
+  animation: revealSection 0.6s ease forwards;
+}
+
+@keyframes revealSection {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .section h2 {

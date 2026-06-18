@@ -54,15 +54,26 @@ function onVideoEnd() {
 function revealCTA() {
   const timerBar = document.getElementById('timer-bar');
   const allCTAs = document.querySelectorAll('.cta-hidden');
+  const hiddenSections = document.querySelectorAll('.content-hidden');
 
   timerBar.classList.add('visible');
   document.body.classList.add('timer-active');
 
+  // Revela as secoes escondidas com stagger
+  hiddenSections.forEach((section, i) => {
+    setTimeout(() => {
+      section.classList.remove('content-hidden');
+      section.classList.add('content-visible');
+    }, i * 150);
+  });
+
+  // Revela os CTAs apos as secoes
+  const ctaDelay = hiddenSections.length * 150;
   allCTAs.forEach((btn, i) => {
     setTimeout(() => {
       btn.classList.remove('cta-hidden');
       btn.classList.add('cta-visible');
-    }, i * 200);
+    }, ctaDelay + i * 200);
   });
 }
 
