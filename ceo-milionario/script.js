@@ -6,7 +6,7 @@ const CONFIG = {
   countdownMinutes: 20,
 
   // Link de compra
-  purchaseUrl: 'https://pay.lowify.com.br/checkout?product_id=EyMs5r',
+  purchaseUrl: 'https://pay.lowify.com.br/checkout.php?product_id=cipuFq',
 };
 
 // ============================================================
