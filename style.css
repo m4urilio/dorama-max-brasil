@@ -102,7 +102,7 @@ body.timer-active .hero {
 .video-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 177.78%; /* 9:16 vertical */
+  padding-bottom: 133.33%; /* 3:4 vertical (576x768) */
   border-radius: var(--radius);
   overflow: hidden;
   background: #000;
@@ -620,6 +620,6 @@ body.timer-active .hero {
   }
 
   .video-wrapper {
-    padding-bottom: 56.25%; /* 16:9 horizontal on larger screens */
+    padding-bottom: 133.33%; /* manter vertical em telas maiores */
   }
 }

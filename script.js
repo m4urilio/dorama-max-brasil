@@ -2,26 +2,11 @@
 // CONFIGURACAO - Altere aqui para personalizar a landing page
 // ============================================================
 const CONFIG = {
-  // Tipo de video: 'youtube' | 'iframe' | 'html5'
-  // youtube = detecta fim do video automaticamente via API
-  // iframe  = embed generico, mostra CTA apos X segundos
-  // html5   = tag <video>, detecta fim automaticamente
-  mode: 'youtube',
-
-  // ID do video do YouTube (ex: 'dQw4w9WgXcQ')
-  youtubeId: 'SEU_VIDEO_ID_AQUI',
-
-  // URL do iframe (usado se mode = 'iframe')
-  iframeUrl: '',
-
-  // Segundos para revelar CTA (usado se mode = 'iframe')
-  revealDelay: 180,
-
   // Duracao do countdown em minutos
   countdownMinutes: 20,
 
-  // Link de compra (substitua pelo seu link real)
-  purchaseUrl: '#',
+  // Link de compra
+  purchaseUrl: 'https://pay.lowify.com.br/checkout?product_id=EyMs5r',
 };
 
 // ============================================================
@@ -42,67 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================================
-// VIDEO
+// VIDEO (Vimeo Player API)
 // ============================================================
 function setupVideo() {
-  const container = document.getElementById('player');
-  if (!container) return;
+  const iframe = document.getElementById('vimeo-player');
+  if (!iframe) return;
 
-  if (CONFIG.mode === 'youtube') {
-    loadYouTubeAPI();
-  } else if (CONFIG.mode === 'iframe') {
-    loadGenericIframe(container);
-  } else if (CONFIG.mode === 'html5') {
-    loadHTML5Video(container);
-  }
-}
-
-// --- YouTube ---
-function loadYouTubeAPI() {
-  const tag = document.createElement('script');
-  tag.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(tag);
-}
-
-// Callback global exigido pela YouTube IFrame API
-window.onYouTubeIframeAPIReady = function () {
-  new YT.Player('player', {
-    videoId: CONFIG.youtubeId,
-    playerVars: {
-      autoplay: 0,
-      controls: 1,
-      rel: 0,
-      modestbranding: 1,
-      playsinline: 1,
-    },
-    events: {
-      onStateChange: function (event) {
-        if (event.data === YT.PlayerState.ENDED) {
-          onVideoEnd();
-        }
-      },
-    },
-  });
-};
-
-// --- Iframe generico ---
-function loadGenericIframe(container) {
-  if (!CONFIG.iframeUrl) {
-    container.innerHTML = '<div class="video-placeholder">Configure o link do video em script.js</div>';
-    return;
-  }
-  const iframe = document.createElement('iframe');
-  iframe.src = CONFIG.iframeUrl;
-  iframe.allow = 'autoplay; fullscreen';
-  iframe.allowFullscreen = true;
-  container.replaceWith(iframe);
-
-  setTimeout(() => onVideoEnd(), CONFIG.revealDelay * 1000);
-}
-
-// --- HTML5 Video ---
-function loadHTML5Video(container) {
-  container.innerHTML = '<div class="video-placeholder">Configure o video em script.js</div>';
+  const player = new Vimeo.Player(iframe);
+  player.on('ended', () => onVideoEnd());
 }
 
 // ============================================================
@@ -188,10 +120,9 @@ function checkSavedState() {
 // ============================================================
 function setupPurchaseLinks() {
   document.querySelectorAll('.btn-cta').forEach((btn) => {
-    if (btn.getAttribute('href') === '#' || btn.getAttribute('href') === '#plans') {
-      if (btn.id !== 'cta-hero') {
-        btn.setAttribute('href', CONFIG.purchaseUrl);
-      }
+    const href = btn.getAttribute('href');
+    if (href === '#' || href === '#plans') {
+      btn.setAttribute('href', CONFIG.purchaseUrl);
     }
   });
 }
