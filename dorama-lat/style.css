@@ -132,6 +132,17 @@ body.timer-active .hero {
   margin-bottom: 24px;
 }
 
+/* ==================== HERO COVER ==================== */
+
+.hero-cover {
+  width: 65%;
+  max-width: 260px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 24px;
+}
+
 /* ==================== VIDEO ==================== */
 
 .video-wrapper {
