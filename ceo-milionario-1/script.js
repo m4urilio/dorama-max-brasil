@@ -74,4 +74,36 @@ document.addEventListener('DOMContentLoaded', function() {
     keys.forEach(function(k) { if (params.get(k)) url.searchParams.set(k, params.get(k)); });
     link.href = url.toString();
   });
+
+  // Toast notifications
+  var toast = document.getElementById('toast');
+  var toastText = document.getElementById('toast-text');
+  var toastClose = document.getElementById('toast-close');
+  var messages = [
+    'Camila acabou de comprar O CEO Milionario e a Amante Secreta - Completo e Dublado - 24 Episodios',
+    'Fernanda de Sao Paulo garantiu o acesso completo agora mesmo',
+    'Juliana acabou de comprar O CEO Milionario - 24 Episodios Dublados',
+    'Patricia de Belo Horizonte comprou o pacote completo',
+    'Larissa acabou de garantir o acesso aos 24 episodios dublados',
+    'Beatriz de Curitiba comprou O CEO Milionario e a Amante Secreta agora',
+    'Carolina acabou de comprar o acesso completo - 24 Episodios',
+    'Mariana de Recife garantiu o pacote completo agora mesmo',
+    'Gabriela acabou de comprar O CEO Milionario - Dublado Completo',
+    'Amanda de Fortaleza comprou o acesso aos 24 episodios'
+  ];
+  var toastIndex = 0;
+
+  function showToast() {
+    toastText.textContent = messages[toastIndex];
+    toast.classList.add('show');
+    setTimeout(function() { toast.classList.remove('show'); }, 5000);
+    toastIndex = (toastIndex + 1) % messages.length;
+  }
+
+  toastClose.addEventListener('click', function() { toast.classList.remove('show'); });
+
+  setTimeout(function() {
+    showToast();
+    setInterval(showToast, 15000);
+  }, 8000);
 });
