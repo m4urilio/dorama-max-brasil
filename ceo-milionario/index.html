@@ -7,10 +7,11 @@
   <meta name="description" content="Acesso completo a milhares de doramas e minisséries premium. Assista sem limites.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" type="image/webp" href="capa.webp">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://player.vimeo.com/api/player.js"></script>
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="https://player.vimeo.com/api/player.js" defer></script>
 
   <!-- Meta Pixel -->
   <script>
@@ -43,7 +44,10 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="navbar-inner">
-      <img src="logo.png" alt="Dorama MAX Brasil" class="navbar-logo">
+      <picture>
+        <source srcset="logo.webp" type="image/webp">
+        <img src="logo-opt.png" alt="Dorama MAX Brasil" class="navbar-logo" width="37" height="36" loading="eager">
+      </picture>
       <span class="navbar-brand">Dorama <strong>MAX</strong> Brasil</span>
     </div>
   </nav>
@@ -59,17 +63,36 @@
     <!-- Hero -->
     <section class="hero">
       <h1>O CEO milionário descobriu que a "garota irresponsável" do hospital era sua esposa secreta!</h1>
-      <p class="hero-subtitle">Novo lançamento disponível apenas na Dorama MAX Brasil</p>
+      <p class="hero-subtitle">Novo lançamento disponível em 24 episódios dublados apenas na Dorama Max Brasil</p>
+
+      <picture>
+        <source srcset="capa.webp" type="image/webp">
+        <img src="capa-opt.jpg" alt="O CEO Milionário e a Amante Secreta" class="hero-cover" width="430" height="537" fetchpriority="high" loading="eager">
+      </picture>
 
       <div class="video-wrapper">
         <iframe id="vimeo-player" src="https://player.vimeo.com/video/1202353342?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="O Ceo Milionário e a Amante Secreta"></iframe>
       </div>
 
-      <a href="https://pay.lowify.com.br/checkout.php?product_id=cipuFq" id="cta-hero" class="btn-cta cta-hidden">Quero Meu Acesso</a>
+      <div class="cta-card">
+        <div class="cta-card-rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span class="rating-value">(4,89)</span>
+        </div>
+        <h3>Clique abaixo para acessar o conteúdo completo!</h3>
+        <p class="cta-card-payment">Pagamento único</p>
+        <p class="cta-card-price">4,99</p>
+        <ul class="cta-card-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acesso imediato aos 24 episódios dublados de O CEO Milionário e a Amante Secreta</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Todos os episódios liberados dos melhores apps</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Novo Lançamento</li>
+        </ul>
+        <button type="button" class="btn-cta-card" id="open-modal">QUERO COMPLETO</button>
+      </div>
     </section>
 
     <!-- Benefícios -->
-    <section class="section content-hidden" id="benefits">
+    <section class="section" id="benefits">
       <h2>O Que Você Vai Receber</h2>
       <p class="section-subtitle">Acesso completo a todo conteúdo premium, sem limites</p>
 
@@ -117,7 +140,7 @@
     </section>
 
     <!-- Depoimentos -->
-    <section class="section content-hidden" id="testimonials">
+    <section class="section" id="testimonials">
       <h2>O Que Dizem Nossos<br>Assinantes VIP</h2>
 
       <div class="testimonial-carousel">
@@ -198,7 +221,7 @@
 
 
     <!-- Garantia -->
-    <section class="section content-hidden" id="guarantee">
+    <section class="section" id="guarantee">
       <div class="guarantee-card">
         <div class="guarantee-icon">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
@@ -214,7 +237,7 @@
     </section>
 
     <!-- FAQ -->
-    <section class="section content-hidden" id="faq">
+    <section class="section" id="faq">
       <div class="faq-card">
         <h2>Perguntas Frequentes</h2>
 
@@ -261,6 +284,28 @@
     </section>
 
   </main>
+
+  <!-- Modal Upgrade -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-card">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <span class="modal-badge">UPGRADE PREMIUM</span>
+      <h3 class="modal-title">Pacote Premium</h3>
+      <p class="modal-price">R$ 9,99</p>
+      <p class="modal-subtitle">Acesso VITALÍCIO</p>
+      <div class="modal-includes">
+        <p class="modal-includes-label">INCLUI:</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a24e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> +3500 mini-séries</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a24e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Lançamentos Diários</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a24e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acesso Vitalício</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8a24e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Nunca mais pague por uma série!</li>
+        </ul>
+      </div>
+      <a href="https://pay.lowify.com.br/checkout?product_id=JtqtRQ&offer_slug=vfdc048" class="modal-btn-premium">QUERO O PREMIUM</a>
+      <a href="https://pay.lowify.com.br/checkout?product_id=JtqtRQ&offer_slug=d6l93je" class="modal-btn-basic">Quero só a oferta básica</a>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -1,0 +1,22 @@
+{
+  "headers": [
+    {
+      "source": "/ceo-milionario/(.*\\.webp)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/ceo-milionario/(.*\\.(jpg|png|ico))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/ceo-milionario/(.*\\.(css|js))",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

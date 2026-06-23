@@ -1,96 +1,32 @@
 // ============================================================
-// CONFIGURACAO - Altere aqui para personalizar a landing page
-// ============================================================
-const CONFIG = {
-  // Duracao do countdown em minutos
-  countdownMinutes: 20,
-
-  // Link de compra
-  purchaseUrl: 'https://pay.lowify.com.br/checkout.php?product_id=cipuFq',
-};
-
-// ============================================================
-// ESTADO
-// ============================================================
-let videoEnded = false;
-let countdownInterval = null;
-
-// ============================================================
 // INICIALIZACAO
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
-  setupPurchaseLinks();
   setupFAQ();
   setupCarousel();
-  checkSavedState();
-  setupVideo();
-});
-
-// ============================================================
-// VIDEO (Vimeo Player API)
-// ============================================================
-function setupVideo() {
-  const iframe = document.getElementById('vimeo-player');
-  if (!iframe) return;
-
-  const player = new Vimeo.Player(iframe);
-  player.on('ended', () => onVideoEnd());
-}
-
-// ============================================================
-// REVELACAO DO CTA + TIMER
-// ============================================================
-function onVideoEnd() {
-  if (videoEnded) return;
-  videoEnded = true;
-
-  localStorage.setItem('dmb_video_ended', 'true');
-  localStorage.setItem('dmb_countdown_start', Date.now().toString());
-
-  revealCTA();
   startCountdown();
-}
-
-function revealCTA() {
-  const timerBar = document.getElementById('timer-bar');
-  const allCTAs = document.querySelectorAll('.cta-hidden');
-  const hiddenSections = document.querySelectorAll('.content-hidden');
-
-  timerBar.classList.add('visible');
-  document.body.classList.add('timer-active');
-
-  // Revela as secoes escondidas com stagger
-  hiddenSections.forEach((section, i) => {
-    setTimeout(() => {
-      section.classList.remove('content-hidden');
-      section.classList.add('content-visible');
-    }, i * 150);
-  });
-
-  // Revela os CTAs apos as secoes
-  const ctaDelay = hiddenSections.length * 150;
-  allCTAs.forEach((btn, i) => {
-    setTimeout(() => {
-      btn.classList.remove('cta-hidden');
-      btn.classList.add('cta-visible');
-    }, ctaDelay + i * 200);
-  });
-}
+  setupModal();
+});
 
 // ============================================================
 // COUNTDOWN TIMER
 // ============================================================
 function startCountdown() {
   const display = document.getElementById('countdown');
-  const startTime = parseInt(localStorage.getItem('dmb_countdown_start'), 10);
-  const totalMs = CONFIG.countdownMinutes * 60 * 1000;
-  const endTime = startTime + totalMs;
+  const timerBar = document.getElementById('timer-bar');
+  if (!display || !timerBar) return;
+
+  timerBar.classList.add('visible');
+  document.body.classList.add('timer-active');
+
+  const totalMs = 19 * 60 * 1000 + 32 * 1000;
+  const endTime = Date.now() + totalMs;
 
   function tick() {
     const remaining = endTime - Date.now();
     if (remaining <= 0) {
       display.textContent = '00:00';
-      clearInterval(countdownInterval);
+      clearInterval(interval);
       return;
     }
     const mins = Math.floor(remaining / 60000);
@@ -100,41 +36,22 @@ function startCountdown() {
   }
 
   tick();
-  countdownInterval = setInterval(tick, 1000);
+  const interval = setInterval(tick, 1000);
 }
 
 // ============================================================
-// PERSISTENCIA (reload mantem estado)
+// MODAL UPGRADE
 // ============================================================
-function checkSavedState() {
-  const ended = localStorage.getItem('dmb_video_ended');
-  const start = localStorage.getItem('dmb_countdown_start');
+function setupModal() {
+  const openBtn = document.getElementById('open-modal');
+  const overlay = document.getElementById('modal-overlay');
+  const closeBtn = document.getElementById('modal-close');
+  if (!openBtn || !overlay) return;
 
-  if (ended === 'true' && start) {
-    const totalMs = CONFIG.countdownMinutes * 60 * 1000;
-    const elapsed = Date.now() - parseInt(start, 10);
-
-    if (elapsed < totalMs) {
-      videoEnded = true;
-      revealCTA();
-      startCountdown();
-    } else {
-      // Timer expirou, limpa estado
-      localStorage.removeItem('dmb_video_ended');
-      localStorage.removeItem('dmb_countdown_start');
-    }
-  }
-}
-
-// ============================================================
-// PURCHASE LINKS
-// ============================================================
-function setupPurchaseLinks() {
-  document.querySelectorAll('.btn-cta').forEach((btn) => {
-    const href = btn.getAttribute('href');
-    if (href === '#' || href === '#plans') {
-      btn.setAttribute('href', CONFIG.purchaseUrl);
-    }
+  openBtn.addEventListener('click', () => overlay.classList.add('active'));
+  closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) overlay.classList.remove('active');
   });
 }
 

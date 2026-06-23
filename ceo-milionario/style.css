@@ -79,7 +79,7 @@ body {
   justify-content: center;
   gap: 8px;
   padding: 10px 16px;
-  background: linear-gradient(135deg, var(--accent-red), var(--accent-red-light));
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-light));
   font-size: 14px;
   font-weight: 600;
   text-align: center;
@@ -129,6 +129,106 @@ body.timer-active .hero {
   font-size: 14px;
   color: var(--text-secondary);
   margin-bottom: 24px;
+}
+
+.hero-cover {
+  width: 49%;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+/* ==================== CTA CARD ==================== */
+
+.cta-card {
+  background: var(--bg-card);
+  border: 2px solid var(--accent-purple);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
+  margin-top: 8px;
+}
+
+.cta-card-rating {
+  margin-bottom: 12px;
+}
+
+.cta-card-rating .stars {
+  color: #facc15;
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.cta-card-rating .rating-value {
+  color: #facc15;
+  font-size: 13px;
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+.cta-card h3 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+
+.cta-card-payment {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.cta-card-price {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.cta-card-features {
+  list-style: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.cta-card-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.cta-card-features li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.btn-cta-card {
+  display: block;
+  width: 100%;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-light));
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: ctaPulse 2s ease-in-out infinite;
+}
+
+.btn-cta-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
 }
 
 /* ==================== VIDEO ==================== */
@@ -654,6 +754,154 @@ body.timer-active .hero {
   font-size: 13px;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* ==================== MODAL UPGRADE ==================== */
+
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.75);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-card {
+  background: #1a1520;
+  border: 2px solid #c8a24e;
+  border-radius: 16px;
+  padding: 32px 24px 28px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: modalIn 0.3s ease;
+}
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.modal-badge {
+  display: inline-block;
+  background: #1a1520;
+  border: 1.5px solid #c8a24e;
+  color: #c8a24e;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 16px;
+  border-radius: 50px;
+  letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+
+.modal-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.modal-price {
+  font-size: 42px;
+  font-weight: 800;
+  color: #c8a24e;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.modal-subtitle {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.modal-includes {
+  background: #241e2e;
+  border: 1px solid rgba(200, 162, 78, 0.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.modal-includes-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.modal-includes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-includes li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.modal-includes li svg {
+  flex-shrink: 0;
+}
+
+.modal-btn-premium {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #c8a24e, #e0c068);
+  color: #1a1520;
+  font-size: 16px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 50px;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+  transition: transform 0.2s ease;
+}
+
+.modal-btn-premium:hover {
+  transform: scale(1.03);
+}
+
+.modal-btn-basic {
+  display: inline-block;
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.modal-btn-basic:hover {
+  color: #fff;
 }
 
 /* ==================== RESPONSIVE ==================== */
