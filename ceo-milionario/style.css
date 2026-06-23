@@ -83,13 +83,6 @@ body {
   font-size: 14px;
   font-weight: 600;
   text-align: center;
-  transform: translateY(-100%);
-  opacity: 0;
-}
-
-.timer-bar.visible {
-  transform: translateY(0);
-  opacity: 1;
 }
 
 .timer-bar strong {
@@ -109,12 +102,8 @@ body {
 /* ==================== HERO ==================== */
 
 .hero {
-  padding-top: 30px;
-  text-align: center;
-}
-
-body.timer-active .hero {
   padding-top: 70px;
+  text-align: center;
 }
 
 .hero h1 {
