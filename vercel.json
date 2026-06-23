@@ -1,25 +1,31 @@
 {
   "headers": [
     {
-      "source": "/ceo-milionario/(.*\\.webp)",
+      "source": "/(.*)\\.webp",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/ceo-milionario/(.*\\.(jpg|png|ico))",
+      "source": "/(.*)\\.jpg",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/ceo-milionario/(.*\\.(css|js))",
+      "source": "/(.*)\\.png",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
     },
     {
-      "source": "/ceo-milionario-1/(.*\\.(webp|jpg|png|ico|css|js))",
+      "source": "/(.*)\\.css",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.js",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
