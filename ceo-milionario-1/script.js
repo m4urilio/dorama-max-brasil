@@ -23,15 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
     overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('active'); });
   }
 
-  // Video lazy load
-  var playBtn = document.getElementById('play-btn');
-  if (playBtn) {
-    playBtn.addEventListener('click', function() {
-      document.getElementById('video-container').innerHTML =
-        '<iframe src="https://player.vimeo.com/video/1202353342?autoplay=1&title=0&byline=0&portrait=0&badge=0" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-    });
-  }
-
   // FAQ
   document.querySelectorAll('.faq-question').forEach(function(btn) {
     btn.addEventListener('click', function() {
