@@ -85,7 +85,6 @@ body {
   text-align: center;
   transform: translateY(-100%);
   opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
 }
 
 .timer-bar.visible {
@@ -295,19 +294,6 @@ body.timer-active .hero {
   box-shadow: 0 8px 30px rgba(230, 57, 70, 0.4);
 }
 
-.btn-cta.cta-hidden {
-  opacity: 0;
-  transform: scale(0.9) translateY(10px);
-  pointer-events: none;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.btn-cta.cta-visible {
-  opacity: 1;
-  transform: scale(1) translateY(0);
-  pointer-events: auto;
-  animation: ctaPulse 2s ease-in-out infinite;
-}
 
 @keyframes ctaPulse {
   0%, 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.4); }
@@ -320,19 +306,6 @@ body.timer-active .hero {
   margin-top: 56px;
 }
 
-.content-hidden {
-  display: none;
-}
-
-.content-visible {
-  display: block;
-  animation: revealSection 0.6s ease forwards;
-}
-
-@keyframes revealSection {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 
 .section h2 {
   font-size: 22px;
