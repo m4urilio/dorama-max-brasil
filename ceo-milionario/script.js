@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   setupCarousel();
   startCountdown();
   setupModal();
+  setupVideoLazyLoad();
+  appendUtmsToCheckout();
 });
 
 // ============================================================
@@ -48,7 +50,10 @@ function setupModal() {
   const closeBtn = document.getElementById('modal-close');
   if (!openBtn || !overlay) return;
 
-  openBtn.addEventListener('click', () => overlay.classList.add('active'));
+  openBtn.addEventListener('click', () => {
+    fbq('track', 'InitiateCheckout');
+    overlay.classList.add('active');
+  });
   closeBtn.addEventListener('click', () => overlay.classList.remove('active'));
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) overlay.classList.remove('active');
@@ -109,4 +114,30 @@ function setupCarousel() {
 
   // Auto-play a cada 5s
   setInterval(() => goTo(current + 1), 5000);
+}
+
+// ============================================================
+// VIDEO LAZY LOAD
+// ============================================================
+function setupVideoLazyLoad() {
+  document.getElementById('play-btn').addEventListener('click', function() {
+    document.getElementById('video-container').innerHTML =
+      '<iframe src="https://player.vimeo.com/video/1202353342?autoplay=1&title=0&byline=0&portrait=0&badge=0" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+  });
+}
+
+// ============================================================
+// UTM PASSTHROUGH
+// ============================================================
+function appendUtmsToCheckout() {
+  const params = new URLSearchParams(window.location.search);
+  const utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src'];
+  const links = document.querySelectorAll('.modal-btn-premium, .modal-btn-basic');
+  links.forEach(function(link) {
+    const url = new URL(link.href);
+    utmKeys.forEach(function(key) {
+      if (params.get(key)) url.searchParams.set(key, params.get(key));
+    });
+    link.href = url.toString();
+  });
 }

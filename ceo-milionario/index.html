@@ -11,7 +11,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="style.css?v=4">
-  <script src="https://player.vimeo.com/api/player.js" defer></script>
 
   <!-- Meta Pixel -->
   <script>
@@ -23,11 +22,11 @@
   t.src=v;s=b.getElementsByTagName(e)[0];
   s.parentNode.insertBefore(t,s)}(window, document,'script',
   'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', '1537262637913196');
+  fbq('init', '1454738093000538');
   fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=1537262637913196&ev=PageView&noscript=1"
+  src="https://www.facebook.com/tr?id=1454738093000538&ev=PageView&noscript=1"
   /></noscript>
 
   <!-- Utmify -->
@@ -70,8 +69,16 @@
         <img src="capa-opt.jpg" alt="O CEO Milionário e a Amante Secreta" class="hero-cover" width="430" height="537" fetchpriority="high" loading="eager">
       </picture>
 
-      <div class="video-wrapper">
-        <iframe id="vimeo-player" src="https://player.vimeo.com/video/1202353342?title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="O Ceo Milionário e a Amante Secreta"></iframe>
+      <div class="video-wrapper" id="video-container">
+        <img src="https://vumbnail.com/1202353342.jpg"
+             alt="Assistir trailer"
+             class="video-thumbnail"
+             width="640" height="360"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
+        <button class="play-btn" id="play-btn" aria-label="Reproduzir vídeo" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.7);border:none;border-radius:50%;width:72px;height:72px;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </button>
       </div>
 
       <div class="cta-card">
@@ -307,6 +314,6 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
