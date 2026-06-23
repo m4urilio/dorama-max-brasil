@@ -133,6 +133,7 @@ body.timer-active .hero {
 
 .hero-cover {
   width: 49%;
+  height: auto;
   border-radius: 10px;
   margin-bottom: 24px;
 }
