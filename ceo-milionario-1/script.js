@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (openBtn && overlay) {
     openBtn.addEventListener('click', function() {
       fbq('track', 'InitiateCheckout');
+      if (window.LowTrack) { window.LowTrack.track('InitiateCheckout'); }
       overlay.classList.add('active');
       playPlim();
     });
@@ -71,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (heroCover) {
     heroCover.addEventListener('click', function() {
       fbq('track', 'InitiateCheckout');
+      if (window.LowTrack) { window.LowTrack.track('InitiateCheckout'); }
       document.getElementById('modal-overlay').classList.add('active');
       playPlim();
     });
@@ -79,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Sticky CTA
   document.getElementById('sticky-btn').addEventListener('click', function() {
     fbq('track', 'InitiateCheckout');
+    if (window.LowTrack) { window.LowTrack.track('InitiateCheckout'); }
     document.getElementById('modal-overlay').classList.add('active');
     playPlim();
   });
