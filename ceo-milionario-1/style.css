@@ -385,12 +385,12 @@ body {
   display: block;
   width: 100%;
   padding: 12px;
-  color: #fff;
+  color: #888;
   font-size: 13px;
   font-weight: 600;
   text-align: center;
   text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,0.5);
+  border: 1.5px solid rgba(255,255,255,0.15);
   border-radius: 50px;
   background: transparent;
   cursor: pointer;
