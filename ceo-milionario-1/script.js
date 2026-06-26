@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+  // Tracking seguro
+  function trackEvent(name) {
+    try { if (window.fbq) fbq('track', name); } catch(e) {}
+    try { if (window.LowTrack) window.LowTrack.track(name); } catch(e) {}
+  }
+
   // Plim sound
   function playPlim() {
     try {
@@ -24,8 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var closeBtn = document.getElementById('modal-close');
   if (openBtn && overlay) {
     openBtn.addEventListener('click', function() {
-      fbq('track', 'InitiateCheckout');
-      if (window.LowTrack) { window.LowTrack.track('InitiateCheckout'); }
+      trackEvent('InitiateCheckout');
       overlay.classList.add('active');
       playPlim();
     });
@@ -71,8 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var heroCover = document.getElementById('hero-cover-btn');
   if (heroCover) {
     heroCover.addEventListener('click', function() {
-      fbq('track', 'InitiateCheckout');
-      if (window.LowTrack) { window.LowTrack.track('InitiateCheckout'); }
+      trackEvent('InitiateCheckout');
       document.getElementById('modal-overlay').classList.add('active');
       playPlim();
     });
@@ -80,8 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Sticky CTA
   document.getElementById('sticky-btn').addEventListener('click', function() {
-    fbq('track', 'InitiateCheckout');
-    if (window.LowTrack) { window.LowTrack.track('InitiateCheckout'); }
+    trackEvent('InitiateCheckout');
     document.getElementById('modal-overlay').classList.add('active');
     playPlim();
   });
