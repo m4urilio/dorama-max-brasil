@@ -5,6 +5,17 @@ document.addEventListener('DOMContentLoaded', function() {
     try { if (window.LowTrack) window.LowTrack.track(name); } catch(e) {}
   }
 
+  // Video overlay click-to-play
+  var videoOverlay = document.getElementById('video-overlay');
+  var vimeoIframe = document.getElementById('vimeo-player');
+  if (videoOverlay && vimeoIframe && window.Vimeo) {
+    var player = new Vimeo.Player(vimeoIframe);
+    videoOverlay.addEventListener('click', function() {
+      player.play();
+      videoOverlay.style.display = 'none';
+    });
+  }
+
   // Plim sound
   function playPlim() {
     try {
