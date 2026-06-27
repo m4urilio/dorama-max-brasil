@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       videoLoaded = true;
       if (e) e.preventDefault();
       videoContainer.innerHTML =
-        '<iframe src="https://player.vimeo.com/video/1205137029?autoplay=1&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+        '<iframe src="https://player.vimeo.com/video/1205137029?title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="fullscreen; picture-in-picture" allowfullscreen></iframe>';
     }
     videoContainer.addEventListener('click', loadVideo);
     videoContainer.addEventListener('touchend', loadVideo);
