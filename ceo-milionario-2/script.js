@@ -1,13 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Countdown 19:32
-  var display = document.getElementById('countdown');
-  if (display) {
-    var end = Date.now() + 19 * 60000 + 32 * 1000;
-    setInterval(function() {
-      var r = end - Date.now();
-      if (r <= 0) { display.textContent = '00:00'; return; }
-      display.textContent = String(Math.floor(r / 60000)).padStart(2, '0') + ':' + String(Math.floor((r % 60000) / 1000)).padStart(2, '0');
-    }, 1000);
+  // Tracking seguro
+  function trackEvent(name) {
+    try { if (window.fbq) fbq('track', name); } catch(e) {}
+  }
+
+  // Video overlay click-to-play
+  var videoOverlay = document.getElementById('video-overlay');
+  var vimeoIframe = document.getElementById('vimeo-player');
+  if (videoOverlay && vimeoIframe && window.Vimeo) {
+    var player = new Vimeo.Player(vimeoIframe);
+    videoOverlay.addEventListener('click', function() {
+      player.play();
+      videoOverlay.style.display = 'none';
+    });
+  }
+
+  // Plim sound
+  function playPlim() {
+    try {
+      var ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var osc = ctx.createOscillator();
+      var gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(1200, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(1800, ctx.currentTime + 0.08);
+      osc.frequency.exponentialRampToValueAtTime(2400, ctx.currentTime + 0.15);
+      gain.gain.setValueAtTime(0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.4);
+    } catch(e) {}
   }
 
   // Modal
@@ -16,8 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
   var closeBtn = document.getElementById('modal-close');
   if (openBtn && overlay) {
     openBtn.addEventListener('click', function() {
-      fbq('track', 'InitiateCheckout');
+      trackEvent('InitiateCheckout');
       overlay.classList.add('active');
+      playPlim();
     });
     closeBtn.addEventListener('click', function() { overlay.classList.remove('active'); });
     overlay.addEventListener('click', function(e) { if (e.target === overlay) overlay.classList.remove('active'); });
@@ -57,6 +82,45 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(function() { go(cur + 1); }, 5000);
   }
 
+  // Hero cover click
+  var heroCover = document.getElementById('hero-cover-btn');
+  if (heroCover) {
+    heroCover.addEventListener('click', function() {
+      trackEvent('InitiateCheckout');
+      document.getElementById('modal-overlay').classList.add('active');
+      playPlim();
+    });
+  }
+
+  // Sticky CTA
+  document.getElementById('sticky-btn').addEventListener('click', function() {
+    trackEvent('InitiateCheckout');
+    document.getElementById('modal-overlay').classList.add('active');
+    playPlim();
+  });
+
+  // Exit intent mobile
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      setTimeout(function() {
+        if (document.visibilityState === 'visible') {
+          document.getElementById('modal-overlay').classList.add('active');
+          playPlim();
+        }
+      }, 100);
+    }
+  });
+
+  // Terms modal
+  var termsBtn = document.getElementById('open-terms');
+  var termsOverlay = document.getElementById('terms-overlay');
+  var acceptBtn = document.getElementById('accept-terms');
+  if (termsBtn && termsOverlay) {
+    termsBtn.addEventListener('click', function() { termsOverlay.classList.add('active'); });
+    acceptBtn.addEventListener('click', function() { termsOverlay.classList.remove('active'); });
+    termsOverlay.addEventListener('click', function(e) { if (e.target === termsOverlay) termsOverlay.classList.remove('active'); });
+  }
+
   // UTM passthrough
   var params = new URLSearchParams(window.location.search);
   var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','src'];
@@ -66,35 +130,4 @@ document.addEventListener('DOMContentLoaded', function() {
     link.href = url.toString();
   });
 
-  // Toast notifications
-  var toast = document.getElementById('toast');
-  var toastText = document.getElementById('toast-text');
-  var toastClose = document.getElementById('toast-close');
-  var messages = [
-    'Camila acabou de comprar O CEO Milionario e a Amante Secreta - Completo e Dublado - 24 Episodios',
-    'Fernanda de Sao Paulo garantiu o acesso completo agora mesmo',
-    'Juliana acabou de comprar O CEO Milionario - 24 Episodios Dublados',
-    'Patricia de Belo Horizonte comprou o pacote completo',
-    'Larissa acabou de garantir o acesso aos 24 episodios dublados',
-    'Beatriz de Curitiba comprou O CEO Milionario e a Amante Secreta agora',
-    'Carolina acabou de comprar o acesso completo - 24 Episodios',
-    'Mariana de Recife garantiu o pacote completo agora mesmo',
-    'Gabriela acabou de comprar O CEO Milionario - Dublado Completo',
-    'Amanda de Fortaleza comprou o acesso aos 24 episodios'
-  ];
-  var toastIndex = 0;
-
-  function showToast() {
-    toastText.textContent = messages[toastIndex];
-    toast.classList.add('show');
-    setTimeout(function() { toast.classList.remove('show'); }, 5000);
-    toastIndex = (toastIndex + 1) % messages.length;
-  }
-
-  toastClose.addEventListener('click', function() { toast.classList.remove('show'); });
-
-  setTimeout(function() {
-    showToast();
-    setInterval(showToast, 15000);
-  }, 8000);
 });
