@@ -5,13 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // Video lazy load - thumbnail clicável
-  var playBtn = document.getElementById('play-btn');
   var videoContainer = document.getElementById('video-container');
-  if (playBtn && videoContainer) {
-    videoContainer.addEventListener('click', function() {
+  if (videoContainer) {
+    var videoLoaded = false;
+    function loadVideo(e) {
+      if (videoLoaded) return;
+      videoLoaded = true;
+      if (e) e.preventDefault();
       videoContainer.innerHTML =
         '<iframe src="https://player.vimeo.com/video/1205137029?autoplay=1&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-    });
+    }
+    videoContainer.addEventListener('click', loadVideo);
+    videoContainer.addEventListener('touchend', loadVideo);
   }
 
   // Plim sound
