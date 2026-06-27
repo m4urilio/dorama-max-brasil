@@ -74,7 +74,7 @@ body {
 .video-wrapper {
   position: relative;
   width: 100%;
-  padding-bottom: 133.33%;
+  aspect-ratio: 9/16;
   border-radius: var(--radius);
   overflow: hidden;
   background: #000;
