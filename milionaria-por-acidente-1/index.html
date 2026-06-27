@@ -43,9 +43,21 @@
       <h1>Multi-Milionária por Acidente...</h1>
       <p class="hero-cta-hint">CLIQUE NO VIDEO ABAIXO</p>
 
-      <div class="video-wrapper">
-        <iframe id="vimeo-player" src="https://player.vimeo.com/video/1205137029?badge=0&autopause=0&player_id=0&app_id=58479&title=0&byline=0&portrait=0" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <div class="video-click-overlay" id="video-overlay"></div>
+      <div class="video-wrapper" id="video-container">
+        <img src="https://vumbnail.com/1205137029.jpg"
+             alt="Assistir trailer"
+             width="640" height="360"
+             loading="lazy"
+             style="width:100%;height:100%;object-fit:cover;cursor:pointer;">
+        <button id="play-btn" aria-label="Reproduzir vídeo"
+          style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+          background:rgba(0,0,0,0.7);border:none;border-radius:50%;
+          width:72px;height:72px;cursor:pointer;display:flex;
+          align-items:center;justify-content:center;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="white">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+        </button>
       </div>
 
       <div class="cta-card">
@@ -58,7 +70,7 @@
         </div>
         <h3>O que você vai receber?</h3>
         <ul class="cta-card-features">
-          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acesso imediato aos 24 episódios dublados de Multi-Milionária por Acidente</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Acesso imediato aos 48 episódios dublados de Multi-Milionária por Acidente</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Toda história completa, dublada e HD, pra assistir pelo celular, notebook ou TV</li>
           <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Novo Lançamento de 2026</li>
         </ul>
@@ -80,7 +92,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </div>
           <div class="benefit-text">
-            <strong>24 Episódios Dublados</strong>
+            <strong>48 Episódios Dublados</strong>
             <p>Acesso imediato a todos os episódios de Multi-Milionária por Acidente</p>
           </div>
         </div>
@@ -257,7 +269,6 @@
     <button id="sticky-btn">QUERO ASSISTIR COMPLETO - R$ 4,99</button>
   </div>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
