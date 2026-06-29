@@ -71,16 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(function() { go(cur + 1); }, 5000);
   }
 
-  // Hero cover click
-  var heroCover = document.getElementById('hero-cover-btn');
-  if (heroCover) {
-    heroCover.addEventListener('click', function() {
-      trackEvent('InitiateCheckout');
-      document.getElementById('modal-overlay').classList.add('active');
-      playPlim();
-    });
-  }
-
   // Sticky CTA
   document.getElementById('sticky-btn').addEventListener('click', function() {
     trackEvent('InitiateCheckout');
