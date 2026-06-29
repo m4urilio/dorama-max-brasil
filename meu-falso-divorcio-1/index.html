@@ -7,7 +7,6 @@
   <meta name="description" content="Assista Meu Falso Divórcio completo, dublado e em HD. 24 episódios com acesso imediato.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="image" type="image/png" href="capa.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="stylesheet" href="style.css">
@@ -31,11 +30,6 @@
 </head>
 <body>
 
-  <!-- Timer Bar -->
-  <div class="timer-bar">
-    ⚡ Oferta especial — apenas hoje por R$4,99
-  </div>
-
   <main class="container">
 
     <!-- Hero -->
@@ -44,8 +38,7 @@
       <p class="hero-cta-hint">CLIQUE NO VIDEO ABAIXO</p>
 
       <div class="video-wrapper">
-        <iframe id="vimeo-player" src="https://player.vimeo.com/video/1205281018?title=0&byline=0&portrait=0&badge=0" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <div class="video-click-overlay" id="video-overlay"></div>
+        <iframe src="https://player.vimeo.com/video/1205281018?title=0&byline=0&portrait=0&badge=0" width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;"></iframe>
       </div>
 
       <div class="cta-card">
@@ -65,7 +58,7 @@
       </div>
 
       <picture class="hero-cover-link" id="hero-cover-btn" style="cursor:pointer">
-        <img src="capa.png" alt="Meu Falso Divórcio" class="hero-cover" width="430" height="430" loading="lazy">
+        <img src="capa.webp" alt="Meu Falso Divórcio" class="hero-cover" width="430" height="430" loading="lazy">
       </picture>
     </section>
 
@@ -125,16 +118,16 @@
         <button class="carousel-btn prev" id="prev-btn" aria-label="Anterior">&#8249;</button>
 
         <div class="testimonial-slide active">
-          <img src="depoimento-1.png" alt="Depoimento de cliente" class="testimonial-img" loading="lazy">
+          <img src="depoimento-1.png" alt="Depoimento de cliente" class="testimonial-img" width="480" height="600" loading="lazy">
         </div>
         <div class="testimonial-slide">
-          <img src="depoimento-2.png" alt="Depoimento de cliente" class="testimonial-img" loading="lazy">
+          <img src="depoimento-2.png" alt="Depoimento de cliente" class="testimonial-img" width="480" height="600" loading="lazy">
         </div>
         <div class="testimonial-slide">
-          <img src="depoimento-3.png" alt="Depoimento de cliente" class="testimonial-img" loading="lazy">
+          <img src="depoimento-3.png" alt="Depoimento de cliente" class="testimonial-img" width="480" height="600" loading="lazy">
         </div>
         <div class="testimonial-slide">
-          <img src="depoimento-4.png" alt="Depoimento de cliente" class="testimonial-img" loading="lazy">
+          <img src="depoimento-4.png" alt="Depoimento de cliente" class="testimonial-img" width="480" height="600" loading="lazy">
         </div>
 
         <button class="carousel-btn next" id="next-btn" aria-label="Próximo">&#8250;</button>
@@ -257,7 +250,6 @@
     <button id="sticky-btn">QUERO ASSISTIR COMPLETO - R$ 4,99</button>
   </div>
 
-  <script src="https://player.vimeo.com/api/player.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
