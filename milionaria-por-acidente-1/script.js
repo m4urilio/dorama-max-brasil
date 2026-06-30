@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Tracking seguro
   function trackEvent(name) {
     try { if (window.fbq) fbq('track', name); } catch(e) {}
+    try { if (window.LowTrack) window.LowTrack.track(name); } catch(e) {}
   }
 
 
